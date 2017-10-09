@@ -45,7 +45,7 @@
     <dependency>
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.compat.version}</artifactId>
-      <version>2.2.4</version>
+      <version>3.0.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -67,9 +67,11 @@
             </goals>
             <configuration>
               <args>
-                <arg>-make:transitive</arg>
-                <arg>-dependencyfile</arg>
-                <arg>${project.build.directory}/.scala_dependencies</arg>
+                <arg>-unchecked</arg> <!-- TODO: Ask why these args are necessary-->
+                <arg>-deprecation</arg>
+                <arg>-feature</arg>
+                <!-- work-around for https://issues.scala-lang.org/browse/SI-8358 -->
+                <arg>-nobootcp</arg>
               </args>
             </configuration>
           </execution>
