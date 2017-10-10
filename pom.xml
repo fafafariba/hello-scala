@@ -67,7 +67,9 @@
             </goals>
             <configuration>
               <args>
-                <arg>-unchecked</arg> <!-- TODO: Ask why these args are necessary-->
+                <arg>-unchecked</arg>
+                <!-- TODO: Ask about Main http://docs.scala-lang.org/tutorials/scala-with-maven.html#creating-a-jar-->
+                <!-- TODO: Ask why these args are necessary-->
                 <arg>-deprecation</arg>
                 <arg>-feature</arg>
                 <!-- work-around for https://issues.scala-lang.org/browse/SI-8358 -->
