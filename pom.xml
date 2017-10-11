@@ -1,95 +1,110 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.seefaribacode.onboarding</groupId>
-  <artifactId>hello-scala</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>${project.artifactId}</name>
-  <description>My wonderfull scala app</description>
-  <inceptionYear>2015</inceptionYear>
-  <licenses>
-    <license>
-      <name>My License</name>
-      <url>http://....</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.seefaribacode.onboarding</groupId>
+    <artifactId>hello-scala</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
 
-  <properties>
-    <!-- Below: Specifies Java version so that runs the same on all machines -->
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <!-- Below: Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
-    <encoding>UTF-8</encoding>
-    <scala.version>2.12.3</scala.version>
-    <scala.compat.version>2.12</scala.compat.version>
-  </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.scala-lang</groupId>
-      <artifactId>scala-library</artifactId>
-      <version>${scala.version}</version>
-    </dependency>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Below: Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
+        <encoding>UTF-8</encoding>
+        <scala.version>2.12.3</scala.version>
+        <scala.compat.version>2.12</scala.compat.version>
+    </properties>
 
-    <!-- Test -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_${scala.compat.version}</artifactId>
-      <version>3.0.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
 
-  <build>
-    <sourceDirectory>src/main/scala</sourceDirectory>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
-    <plugins>
-      <plugin>
-        <!-- see http://davidb.github.com/scala-maven-plugin -->
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>scala-maven-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>testCompile</goal>
-            </goals>
-            <configuration>
-              <args>
-                <arg>-unchecked</arg>
-                <!-- TODO: Ask about Main http://docs.scala-lang.org/tutorials/scala-with-maven.html#creating-a-jar-->
-                <!-- TODO: Ask why these args are necessary-->
-                <arg>-deprecation</arg>
-                <arg>-feature</arg>
-                <!-- work-around for https://issues.scala-lang.org/browse/SI-8358 -->
-                <arg>-nobootcp</arg>
-              </args>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.18.1</version>
-        <configuration>
-          <useFile>false</useFile>
-          <disableXmlReport>false</disableXmlReport>
-          <!-- If you have classpath issue like NoDefClassError,... -->
-          <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
-          <!--<includes>-->
-            <!--<include>**/*Test.*</include>-->
-            <!--<include>**/*Suite.*</include>-->
-          <!--</includes>-->
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.compat.version}</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Below: Changes source directory to scala, not default, java -->
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <plugins>
+            <!-- Below: Specifies Java version so that runs the same on all machines -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- see http://davidb.github.com/scala-maven-plugin -->
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-unchecked</arg>
+                                <!-- TODO: Ask about Main http://docs.scala-lang.org/tutorials/scala-with-maven.html#creating-a-jar-->
+                                <!-- TODO: Ask why these args are necessary-->
+                                <arg>-deprecation</arg>
+                                <arg>-feature</arg>
+
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- disable surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!-- enable scalatest -->
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <junitxml>.</junitxml>
+                    <filereports>WDF TestSuite.txt</filereports>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
