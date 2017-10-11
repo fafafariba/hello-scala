@@ -1,2 +1,2 @@
 #Hello Scala!
-A safe place to play around with Scala
+A safe space to play around with Scala

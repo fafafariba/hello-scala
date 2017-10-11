@@ -2,6 +2,8 @@ package com.seefaribacode.onboarding
 
 object HelloApp extends App  {
 
+
+
     class Hello(var greeting: String = "Hello") {
         var name: String = ""
 
